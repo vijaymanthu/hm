@@ -57,17 +57,30 @@ $(document).ready( function () {
 
         <div class="m-4">
         <label for="roomno">Room Number</label>
-        <select name="roomid" id="roomno" class="form-control">
-            <option value="" selected>SELECT</option>
+        <select required name="roomid" id="roomno" class="form-control">
+            <option value="" selected disabled>SELECT</option>
             <?php 
                 // $room_sql = "SELECT r.id,r.room_no,(r.seater - filled_bed.filled) as vacancy from (SELECT r.room_no,count(*) as filled FROM `room_allocated` as ra Right Join `rooms` as r ON r.id = ra.room_id group by r.room_no) as filled_bed Right join rooms as r on filled_bed.room_no = r.room_no group by r.room_no;";
                $room_sql = "SELECT * from rooms";
+               $bed_vacancy_flag = 0;
                 $res = $conn->query($room_sql);
                 while($room = $res->fetch_assoc()){
+                    $rmno = $room['room_no'];
+                    $filled_bedSql = "SELECT filled from `track_bed` where `room_no`='$rmno'";
+                    $filledBed = ($conn->query($filled_bedSql))->fetch_assoc()['filled'];
+                   if($room['seater'] - $filledBed !=0){ 
+                       $bed_vacancy_flag = 1;
                 ?>
-                <option value="<?php echo $room['id']?>"><h4>Room Number:<?php echo $room['room_no'].",Bed:".$room['seater']?></h4></option>
+                <option value="<?php echo $room['id']?>"><h4>Room Number:<?php echo $rmno.",TotalBeds:".$room['seater']." AvilableBeds".$room['seater']-$filledBed?></h4></option>
                 <?php
                 }
+                  
+            }
+            if(!$bed_vacancy_flag){
+            ?>
+            <option value="" selected disabled>No Vacancy All Rooms are full</option>
+            <?php 
+            }
             ?>
         </select>
             </form>
@@ -92,6 +105,32 @@ $(document).ready( function () {
                     $alloc_res = $conn->query($alloc_sql);
                     $msg = "";
                     if($alloc_res){
+                        $insert_id = $conn->insert_id;
+                        $sql3 = "SELECT room_no from `room_allocated` where `id`='$insert_id'";
+                        $res3 = $conn->query($sql3);
+                        $room_allocated = $res3->fetch_assoc();
+                        $alloted_roomNo = $room_allocated['room_no'];
+                        $sql4 ="SELECT * FROM `track_bed` where `room_no`='$alloted_roomNo'";
+                        $sql5 = "" ;
+                        $res4 = $conn->query($sql4);
+                        try {
+                            if($res4->num_rows > 0){
+                                
+                                $d = $conn->query($sql4)->fetch_assoc()['filled'];
+                                $sql5 = "UPDATE `track_bed` SET `filled` = $d+1 where room_no = '$alloted_roomNo' ";
+                            }
+                            else if($res4->num_rows == 0){
+                                $sql5 = "INSERT INTO `track_bed`(`room_no`, `filled`) VALUES ('$alloted_roomNo','1')";
+                            }
+                            if($conn->query($sql5))
+                                echo "<script>document.location=''</script>";
+                        } catch (Exception $e) {
+                            echo $conn->mysqli_error();
+                        }
+                        
+                    
+
+
                         $msg = "Room Allocation Successfull";
                     }
                 }

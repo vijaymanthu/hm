@@ -1,13 +1,19 @@
 .nav-text {
   color: aliceblue;
   font-family: 'Times New Roman', Times, serif;
+  
+  text-shadow:2px 2px 5px #fdfdfd;
 }
 .nav-text:hover {
   background-color: brown;
   padding: 10px;
   border-radius: 15%;
 }
+
 .brand-text:hover{
   text-shadow:2px 2px 5px #fdfdfd;
 }
 
+.brand-text{
+  text-shadow:2px 2px 5px #fdfdfd;
+}

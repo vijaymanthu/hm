@@ -36,7 +36,7 @@
 													<div class="h1"><?php echo $count-1;?></div>
 													<div class="stat-panel-title text-uppercase">USERS </div>
 												</div>
-											<a href="manage-students.php" class="card-footer bg-light text-center nav-link">Full Detail <i class="fa fa-arrow-right"></i></a>
+											<a href="#" class="card-footer bg-light text-center nav-link">Full Detail <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -50,7 +50,7 @@
 													<div class="stat-panel-number h1 "><?php echo $TotalRoom1;?></div>
 													<div class="stat-panel-title text-uppercase">Total Rooms </div>
 												</div>
-											<a href="manage-rooms.php" class="card-footer bg-light text-center nav-link">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="mrooms.php" class="card-footer bg-light text-center nav-link">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 
@@ -65,23 +65,10 @@
 													<div class="stat-panel-number h1 "><?php echo $foodmenu;?></div>
 													<div class="stat-panel-title text-uppercase">Food Menu </div>
 												</div>
-											<a href="cfood.php" class="card-footer bg-light text-center nav-link">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="mfood.php" class="card-footer bg-light text-center nav-link">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 
-									<div class="col-md-3">
-                    <div class="card bg-danger text-light">
-												<div class="card-body text-center">
-                            <?php
-                            $result1 ="SELECT count(*) as c FROM Dining ";
-                            $stmt1 = $conn->query($result1);
-                            $dinning = $stmt1->fetch_assoc()['c'];
-                            ?>
-													<div class="stat-panel-number h1 "><?php echo $dinning;?></div>
-													<div class="stat-panel-title text-uppercase">Dining </div>
-												</div>
-											<a href="Adining.php" class="card-footer bg-light text-center nav-link">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
 									</div>									
 								</div>
 							</div>

@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarSupportedContent">
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <p class="h4 brand-text text-secondary">Hostel Management </p>
+        <p class="h4 brand-text text-dark">HOSTEL MANAGEMENT </p>
       </a>
       <div class="d-lg-flex text-light">
       <a class="nav-link" href="login.php"><span class="nav-text"><i class="fas fa-sign-in-alt m-2"></i>Login</span></a>

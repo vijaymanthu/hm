@@ -1,6 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['user'])){
+  header('Location:../index.php');
+}
+if(!isset($_SESSION['user'])){
   echo "<script>";
   echo "alert('you are not authorised to this page)";
   echo "document.location = '../login.php'";
