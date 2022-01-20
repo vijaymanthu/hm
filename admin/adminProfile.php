@@ -120,19 +120,19 @@ if(isset($_POST['changepwd']))
 											<div class="form-group">
 												<label class="col-sm-4 control-label">old Password </label>
 												<div class="col-sm-8">
-				<input type="password" value="" name="oldpassword" id="oldpassword" class="form-control" onBlur="checkpass()" required="required">
+				<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title = "Password must be contain : lowercase&#10UpperCase,&#10 Atleast 1 Number,&#10Minimum 8Character"value="" name="oldpassword" id="oldpassword" class="form-control" onBlur="checkpass()" required="required">
 									 <span id="password-availability-status" class="help-block m-b-none" style="font-size:12px;"></span> </div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label">New Password</label>
 												<div class="col-sm-8">
-											<input type="password" class="form-control" name="newpassword" id="newpassword" value="" required="required">
+											<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title = "Password must be contain : lowercase&#10UpperCase,&#10 Atleast 1 Number,&#10Minimum 8Character" class="form-control" name="newpassword" id="newpassword" value="" required="required">
 												</div>
 											</div>
 <div class="form-group">
 									<label class="col-sm-4 control-label">Confirm Password</label>
 									<div class="col-sm-8">
-				<input type="password" class="form-control" value="" required="required" id="cpassword" name="cpassword" >
+				<input type="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title = "Password must be contain : lowercase&#10UpperCase,&#10 Atleast 1 Number,&#10Minimum 8Character" value="" required="required" id="cpassword" name="cpassword" >
 												</div>
 											</div>
 												<div class="col-sm-6 col-sm-offset-4">

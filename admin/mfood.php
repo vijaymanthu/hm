@@ -212,13 +212,13 @@ $(document).ready( function () {
 												<div class="col-sm-8">
                                                     <Select name="day" class="form-control" required>
                                                         <option value="">SELECT</option>
-                                                        <option value="1">1st Day</option>
-                                                        <option value="2">2nd Day</option>
-                                                        <option value="3">3rd Day</option>
-                                                        <option value="4">4th Day</option>
-                                                        <option value="5">5th Day</option>
-                                                        <option value="6">6th Day</option>
-                                                        <option value="7">7th Day</option>
+                                                        <option value="Monday">1st Day</option>
+                                                        <option value="Tuesday">2nd Day</option>
+                                                        <option value="Wednesday">3rd Day</option>
+                                                        <option value="Thursday">4th Day</option>
+                                                        <option value="Friday">5th Day</option>
+                                                        <option value="Saturday">6th Day</option>
+                                                        <option value="Sunday">7th Day</option>
                                                     </Select>
                                                 </div>
                                             </div>

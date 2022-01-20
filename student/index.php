@@ -1,3 +1,16 @@
-<h1>Student or User Page Goes Here</h1>
+<?php
+include 'header.php';
+require_once 'Navbar.php';
+?>
 
-<a href="../signout.php"> Logout</a>
+
+<footer class="footer">
+    
+</footer>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"
+></script>
+</body>
+</html>

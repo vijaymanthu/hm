@@ -18,7 +18,7 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
         <p class="h4 brand-text text-dark">HOSTEL MANAGEMENT </p>
       </a>
       <div class="d-lg-flex text-light">

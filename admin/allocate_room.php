@@ -17,14 +17,22 @@ function get_room($conn,$id){
 }
 if(isset($_POST['update_fees'])){
     $id = $_POST['alloc_id'];
-    $fees = $_POST['fees_paid'];
-
-    $update = "UPDATE `room_allocated` SET paid = '$fees' where id='$id'";
-    $res = $conn->query($update);
-    if($res){
-        echo "<script>";
-        echo "document.location = ''";
-        echo "</script>";
+    $fees = $_POST['fees_paid'] + $_POST['fee_paid_before'];
+    
+    if ($fees > $_POST['actual_fees']){
+            echo "<script>";
+            echo "alert('Given amount exceeds hostel fees');document.location = ''";
+            echo "</script>";
+    }
+    else{ 
+    
+        $update = "UPDATE `room_allocated` SET paid = '$fees' where id='$id'";
+        $res = $conn->query($update);
+        if($res){
+            echo "<script>";
+            echo "document.location = ''";
+            echo "</script>";
+        }
     }
 }
 
@@ -103,6 +111,9 @@ $(document).ready( function () {
 
                     $alloc_sql = "INSERT INTO `room_allocated`(`student_id`, `room_id`, `room_no`, `paid`, `room_fees`) VALUES('$std_id','$roomid','$room_no',0,'$room_fees')";
                     $alloc_res = $conn->query($alloc_sql);
+                    if (!$alloc_res){
+                        echo "<script>alert('Already Room is allocated for this Student');document.location=''</script>";
+                    }
                     $msg = "";
                     if($alloc_res){
                         $insert_id = $conn->insert_id;
@@ -122,6 +133,7 @@ $(document).ready( function () {
                             else if($res4->num_rows == 0){
                                 $sql5 = "INSERT INTO `track_bed`(`room_no`, `filled`) VALUES ('$alloted_roomNo','1')";
                             }
+                            
                             if($conn->query($sql5))
                                 echo "<script>document.location=''</script>";
                         } catch (Exception $e) {
@@ -190,7 +202,7 @@ $(document).ready( function () {
                             <div class="modal fade" id="exampleModal<?php echo $i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content bg-danger" >
-                                <form action="" method="post">
+                                <form action="#" method="post" onsubmit="return validateFees(this)">
                                     <div class="modal-header">
                                         <h3 class="modal-title text-light" id="exampleModalLabel">Update Payment</h3>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -202,16 +214,19 @@ $(document).ready( function () {
                                             <label class="form-label"><h3>Name</h3></label>
                                             <div class="col"><?php echo $std['firstName']." ".$std['lastName']?></div>
                                         </div>
+                                        <p id="FeesError" class="text-light"></p>
                                         <div class="form-group">
                                             <label for="fees_paid" ><h3>Fees</h3></label>
-                                            <input type="number" name="fees_paid" class="form-control" >
+                                            <input type="hidden" name="fee_paid_before" value="<?php echo $row['paid']?>">
+                                            <input type="number" name="fees_paid" id="fees_paid" class="form-control" >
                                             <input type="hidden" name="alloc_id" value="<?php echo $row['id']?>">
-                                        </div>
+                                            <input type="hidden" name="actual_fees" id="actual_fees" value="<?php echo $row['room_fees']?>" >                                        </div>
+                                        
 
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button class="btn btn-primary" name="update_fees" >Update</button>
+                                        <button class="btn btn-primary"  id="update_fees" name="update_fees" >Update</button>
                                     </div>
                                 </form>
                                 </div>
@@ -228,6 +243,24 @@ $(document).ready( function () {
     </div>
     </div>
                     </div>
+                 
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-  
+  <script>
+      $('#fees_paid').keyup(function(){
+         
+        var actual_amount =  $('#actual_fees').val();
+        var paid = $('#fees_paid').val();
+        console.log(actual_amount);
+        
+        if(parseInt(paid) > parseInt(actual_amount)){
+            $('#update_fees').prop("disabled",true);
+            $("#FeesError").text("**Value should be less than or Equal to Actual Room Fees");
+        }
+        else{
+            $('#update_fees').prop("disabled",false);
+            $("#FeesError").text("");
+        }
+
+      })
+</script>

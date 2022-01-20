@@ -1,8 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
-  header('Location:../index.php');
-}
+if(!isset($_SESSION['user']) || $_SESSION['user']['user_type'] != 'admin')
+header('location:../signout.php');
 if(!isset($_SESSION['user'])){
   echo "<script>";
   echo "alert('you are not authorised to this page)";
@@ -42,9 +41,9 @@ if(!isset($_SESSION['user'])){
           <a class="navbar-brand brand-logo-mini" href="index.php"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
+          <!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize"> -->
+            <!-- <span class="mdi mdi-menu"></span>
+          </button> -->
           <div class="search-field d-none d-md-block">
             <!-- <form class="d-flex align-items-center h-100" action="#">
               <div class="input-group">

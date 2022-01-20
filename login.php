@@ -4,7 +4,7 @@ require_once './Navbar.php';
 require_once './includes/db.php';
 
 
-
+// login code
 if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -21,7 +21,7 @@ if(isset($_POST['login'])){
             echo "document.location = './admin'";
         }
         else{
-            echo "document.location = './student'";
+            echo "document.location = './student/foodMenu.php'";
         }
         echo "</script>";
     

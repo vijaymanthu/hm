@@ -97,7 +97,7 @@ if(isset($_POST['register'])){
                 </div>
                 <div class="col-sm">
                     <label for="cpassword"class="form-label">Confirm Password </label>
-                    <input type="text" name="cpassword" onchange="CheckPassword()" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm Password" id="cpassword" class="form-control">
+                    <input type="password" name="cpassword" onchange="CheckPassword()" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Confirm Password" id="cpassword" class="form-control">
                     <p id="pass_text" class="text-danger"></p>
                 </div>
             </div>
