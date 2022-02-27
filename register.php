@@ -38,17 +38,17 @@ if(isset($_POST['register'])){
             <div class="row mt-3">
                 <div class="col-sm">
                     <label for="first_name"class="form-label">First Name</label>
-                    <input type="text" name="first_name" placeholder="First Name" id="first_name" class="form-control">
+                    <input type="text" name="first_name" pattern="[A-Za-z]{1,32}" title="Only Charaters are allowed" placeholder="First Name" id="first_name" class="form-control">
                 </div>
                 <div class="col-sm">
                     <label for="last_name" class="form-label">Last Name</label>
-                    <input type="text" name="last_name"placeholder="Last Name" id="last_name" class="form-control">
+                    <input type="text" pattern="[A-Za-z]{1,32}" name="last_name"placeholder="Last Name" id="last_name" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm">
                     <label for="mobile"class="form-label">Mobile Number</label>
-                    <input type="Number" name="mobile" placeholder="Mobile Number" id="mobile" class="form-control">
+                    <input type="text" title="please provide valid Mobile Number" name="mobile" pattern="[798][0-9]{9}" placeholder="Mobile Number" id="mobile" class="form-control">
                 </div>
                 <div class="col-sm">
                     <label for="paddress" class="form-label">Permanent Address</label>

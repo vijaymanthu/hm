@@ -7,7 +7,6 @@
 
 
 <div class="content-wrapper">
-  
   <div class="page-header">
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -36,11 +35,11 @@
 													<div class="h1"><?php echo $count-1;?></div>
 													<div class="stat-panel-title text-uppercase">USERS </div>
 												</div>
-											<a href="#" class="card-footer bg-light text-center nav-link">Full Detail <i class="fa fa-arrow-right"></i></a>
+											<a href="#" class="card-footer bg-light text-center nav-link"> <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
-                  <div class="card bg-success text-light">
+                  	<div class="card bg-success text-light">
 												<div class="card-body text-center">
                             <?php
                             $result1 ="SELECT count(*) as c FROM rooms ";

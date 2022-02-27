@@ -62,7 +62,5 @@ if(isset($_POST['login'])){
        </div>  
     </div>
     <button name="login" class="btn btn-primary mt-5 float-lg-end">Login</button>
-       <p><a href="forget-password.php" style="font-size:12px" class="float-lg-end nav-link">Forget password?</a><p>
     </form>
     </div>
-</div>
